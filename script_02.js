@@ -16,25 +16,33 @@ const books = [
 // Sors-moi une liste de tous les titres des livres du CDI
 const booksTitles = books.map(function(book) {
   return {title: book.title}
-})
+});
 
 // Est-ce que tous les livres ont été au moins empruntés une fois ?
-const booksEveryRented = books.filter(
-  (book) => book.rentedCount > 0
-)
+const hasBeenRented = (book) => book.rentedCount > 0;
 
+// Quel est livre le plus emprunté ?
+const rentedbooks = books.map(function(book){
+  return [book.rentedCount]
+});
 
+function highRentedCount(input) {
+  return Math.max.apply(null, input);
+}
+const bookHighRented = books.find(book => book.rentedCount == highRentedCount(rentedbooks));
 
+// Quel est le livre le moins emprunté ?
+function lowRentedCount(input) {
+  return Math.min.apply(null, input);
+}
+const bookLowRented = books.find(book => book.rentedCount == lowRentedCount(rentedbooks));
 
+// Supprime le livre avec l'ID 133712
+const newListBooks = books.filter(book => book.id != 133712);
 
 
 //console.log(booksTitles);
-console.log(booksEveryRented);
-
-
-
-
-
-// Quel est livre le plus emprunté ?
-// Quel est le livre le moins emprunté ?
-// Supprime le livre avec l'ID 133712
+//console.log(books.every(hasBeenRented));
+//console.log(bookHighRented.title);
+//console.log(bookLowRented.title);
+//console.log(newListBooks);
